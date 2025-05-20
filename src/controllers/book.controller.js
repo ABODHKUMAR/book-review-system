@@ -15,3 +15,12 @@ export const listBooks = async (req, res) => {
   const books = await Book.find(q).skip(skip).limit(limit);
   res.json(books);
 };
+
+export const searchBooks = async (req, res) => {
+  const { q } = req.query;
+  if (!q) return res.json([]);
+  const regex = new RegExp(q, 'i');
+  const books = await Book.find({ $or: [{ title: regex }, { author: regex }] })
+                          .limit(20);
+  res.json(books);
+};
