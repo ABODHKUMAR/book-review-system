@@ -6,3 +6,7 @@
 - JSON Web Tokens for auth
 
 
+# API LIST
+    - Post http://localhost:8080/api/login
+
+    - Post http://localhost:8080/api/signup
