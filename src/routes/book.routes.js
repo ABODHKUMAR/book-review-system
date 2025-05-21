@@ -4,6 +4,7 @@ import {
   listBooks,
   getBook,
   searchBooks,
+  addReview,
 } from '../controllers/book.controller.js';
 import { protect } from '../middlewares/auth.middleware.js';
 import { paginate } from '../middlewares/paginate.middleware.js';
@@ -16,4 +17,7 @@ r.route('/')
 
 r.route('/:id')
   .get(paginate(), getBook);
+
+r.post('/:id/reviews', protect, addReview);
 export default r;
+

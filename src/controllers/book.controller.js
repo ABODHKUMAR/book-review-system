@@ -41,3 +41,18 @@ export const searchBooks = async (req, res) => {
                           .limit(20);
   res.json(books);
 };
+
+export const addReview = async (req, res, next) => {
+  try {
+    const review = await Review.create({
+      ...req.body,
+      book: req.params.id,
+      user: req.user._id,
+    });
+    res.status(201).json(review);
+  } catch (err) {         
+    if (err.code === 11000)
+      return next({ status: 400, message: 'One review per user per book' });
+    next(err);
+  }
+};
