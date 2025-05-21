@@ -9,6 +9,9 @@ export const signup = async (req, res, next) => {
     const user = await User.create(req.body);
     res.status(201).json({ token: signToken(user._id) });
   } catch (err) {
+    if (err.code === 11000) {
+      return next({ status: 409, message: 'User already exists' });
+    }
     next(err);
   }
 };
