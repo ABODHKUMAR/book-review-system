@@ -1,4 +1,5 @@
 import Book from '../models/book.model.js';
+import Review from '../models/review.model.js';
 
 export const createBook = async (req, res) => {
   const book = await Book.create(req.body);
@@ -14,6 +15,22 @@ export const listBooks = async (req, res) => {
   const { skip, limit } = req.pagination;
   const books = await Book.find(q).skip(skip).limit(limit);
   res.json(books);
+};
+
+export const getBook = async (req, res, next) => {
+  const book = await Book.findById(req.params.id);
+  if (!book) return next({ status: 404, message: 'Book not found' });
+
+  const { skip, limit } = req.pagination;
+  const reviews = await Review.find({ book: book._id })
+                              .populate('user', 'username')
+                              .skip(skip)
+                              .limit(limit);
+  res.json({
+    ...book.toObject(),
+    averageRating: await book.averageRating,
+    reviews,
+  });
 };
 
 export const searchBooks = async (req, res) => {
