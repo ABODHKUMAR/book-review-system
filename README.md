@@ -37,4 +37,32 @@
     <!-- DELETE /reviews/:id – Delete your own review -->
     - http://localhost:8080/api/reviews/682d3580855c823c71a9bfc6
 
+# Requirements:
+        1. Node js
+        2. git 
+    
 # Steps to run locally
+    1. git clone 
+    2. open folder book-review-system in vs code.
+    3. go to  root directory where package.json file exits
+    4. RUN Command: npm install
+    5. create .env file where in same root directory of Project, hint-> where package.json file exist.
+
+    6.   # paste the below content in .env file
+        PORT = 8080
+        MONGO_URI = "mongodb+srv://abodh5921:7pzB7HnfYGt96Wuq@ecommerce-website-clust.ogjkv1b.mongodb.net/bookreviewdb"
+        JWT_SECRET = "abodh5921"
+
+    7. for testing perpose I have push .env file to github, just for testing, ideally No one should push .env in github repo.
+    8. RUN Command : go to directory where app.js file exist in code. hint-> inside src directory
+    9. Run Command: node app.js
+
+# Testing Api's
+PostMan API view acess: https://www.postman.com/neon44-2157/workspace/test-public-workspace/collection/18117371-d9469169-cd49-4c66-a09c-64b3b20b4bc1?action=share&creator=18117371
+
+
+#API in Json file.
+
+
+
+

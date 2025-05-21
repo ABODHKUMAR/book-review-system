@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "d9469169-cd49-4c66-a09c-64b3b20b4bc1",
+		"name": "book-review-api's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18117371",
+		"_collection_link": "https://www.postman.com/neon44-2157/workspace/test-public-workspace/collection/18117371-d9469169-cd49-4c66-a09c-64b3b20b4bc1?action=share&source=collection_link&creator=18117371"
+	},
+	"item": [
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"abodh5921@gmail.com\",\n    \"username\": \"abodh5921\",\n    \"password\": \"abodh@2000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8080/api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "create book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{vault:authorization-secret}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\t\t\"title\": \"The Shadow in the Fog2\",\n        \"author\": \"Eleanor Graves2\",\n        \"genre\": \"Mystery2\",\n        \"summary\": \"A detective uncovers a dark secret hidden within the misty alleys of Victorian London2.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/books"
+			},
+			"response": []
+		},
+		{
+			"name": "All books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/books"
+			},
+			"response": []
+		},
+		{
+			"name": "search book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/books/search?q=three man",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "three man"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get book by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/books/682cc00f305f568f7f174b19?page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"682cc00f305f568f7f174b19"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Reviews & Ratings",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmQ0OWRmZmMzODk1ZmJjMTAyOGMzOCIsImlhdCI6MTc0Nzc5OTExNywiZXhwIjoxNzQ4NDAzOTE3fQ.1e5vmT1G38wfT2In04NEK1loqiBltdCgYv5IRl5a-Vw"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"rating\": 5,\n  \"text\": \"Absolutely loved it!\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/books/682d3538855c823c71a9bfbe/reviews"
+			},
+			"response": []
+		},
+		{
+			"name": "update Review",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmQ0OWRmZmMzODk1ZmJjMTAyOGMzOCIsImlhdCI6MTc0Nzc5OTExNywiZXhwIjoxNzQ4NDAzOTE3fQ.1e5vmT1G38wfT2In04NEK1loqiBltdCgYv5IRl5a-Vw"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"rating\": 5,\n  \"text\": \"Absolutely loved it!\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/reviews/682d4d0137cdb1933964a93f"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteReview",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{vault:authorization-secret}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/reviews/682d4d0137cdb1933964a93f"
+			},
+			"response": []
+		}
+	]
+}
