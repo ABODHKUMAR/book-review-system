@@ -14,10 +14,20 @@ export const signup = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user || !(await user.comparePassword(password)))
-    return next({ status: 401, message: 'Bad credentials' });
+  try {
+    const { email, password } = req.body;
 
-  res.json({ token: signToken(user._id) });
+    if (!email || !password) {
+      return next({ status: 400, message: 'Email and password are required' });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user || !(await user.comparePassword(password))) {
+      return next({ status: 401, message: 'Bad credentials' });
+    }
+
+    res.json({ token: signToken(user._id) });
+  } catch (err) {
+    next(err);
+  }
 };
