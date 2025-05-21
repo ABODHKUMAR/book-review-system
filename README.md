@@ -42,7 +42,7 @@
         2. git 
     
 # Steps to run locally
-    1. git clone 
+    1. clone the repo Comands: git clone https://github.com/ABODHKUMAR/book-review-system.git
     2. open folder book-review-system in vs code.
     3. go to  root directory where package.json file exits
     4. RUN Command: npm install
@@ -65,7 +65,7 @@ PostMan API view acess: https://www.postman.com/neon44-2157/workspace/test-publi
     - testing /book-review-system/testing api/book-review-api's.postman_collection.json
 
 # Demo Viedo to start & test api
-Link :
+Link : https://www.youtube.com/watch?v=qZm8cmllC0Y
 
 
 
