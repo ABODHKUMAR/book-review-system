@@ -14,7 +14,7 @@
     <!-- {POST /signup – register a new user} -->
     - Post http://localhost:8080/api/signup
    
-   <!-- POST /books – Add a new book (Authenticated users only) -->
+   <!- POST /books – Add a new book (Authenticated users only) -->
     - Post http://localhost:8080/api/books
 
     <!-- GET /books – Get all books (with pagination and optional filters by author and genre) -->
